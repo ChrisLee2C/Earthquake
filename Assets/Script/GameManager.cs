@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private void Awake() { instance = this; }
+    private HTTPPost hTTPPost;
+    private void Awake()
+    {
+        instance = this;
+        hTTPPost = FindObjectOfType<HTTPPost>();
+    }
 
     public float remainingTime = 30f;
     public float delay = 5f;
@@ -80,6 +85,7 @@ public class GameManager : MonoBehaviour
                 endImageScript.SetEndGameObject(endImageScript.endGameObject[2]);
                 endImageScript.gameObject.SetActive(true);
                 isGameStart = false;
+                hTTPPost.Post();
                 break;
         }
     }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb03fe047c6f674ca553651d3204de7, type: 3}
   m_Name: Earthquake
   m_EditorClassIdentifier: 
-  endGameImage: {fileID: 21300000, guid: 5cdc8b30aa8624d41ae44c907178420a, type: 3}
+  endGameImage: {fileID: 21300000, guid: cb493ddff06d0445dbacde157edefcbf, type: 3}
   endGameText1: "\u4EFB\u52D9\u5931\u6557\uFF01\u767C\u751F\u7834\u58DE\u6027\u5730\u9707\uFF01"
   endGameText2: Mission failed! Destructive earthquake occurs!
