@@ -6,6 +6,7 @@ public class Factory : MonoBehaviour
     public GameObject clouds;
     public GameObject shake;
     public GameObject spawner;
+    public GameObject caution;
     public Slider magnitude;
     public Image factory;
     public Sprite[] image;
@@ -27,12 +28,14 @@ public class Factory : MonoBehaviour
                 factory.sprite = image[0];
                 spawner.SetActive(false);
                 shake.SetActive(true);
+                caution.SetActive(true);
             }
             else
             {
                 spawner.SetActive(false);
                 factory.sprite = image[0];
                 shake.SetActive(false);
+                caution.SetActive(false);
             }
         }
         else

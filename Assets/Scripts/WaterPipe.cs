@@ -5,15 +5,24 @@ using UnityEngine.UI;
 public class WaterPipe : MonoBehaviour
 {
     public List<GameObject> ballParticles;
+    public List<Image> triggers;
     public Image waterPipe;
     public Image smallFractures;
     public Image largeFractures;
     public Slider magnitude;
-    public float waterLevelModifier = 0f;
+    public GameObject inject;
+    private float waterLevelModifier = 1f;
+    private bool isLargeFilled = false;
 
     private void AddWater()
     {
-        if (smallFractures.fillAmount >= 1)
+        if(largeFractures.fillAmount >= 1)
+        {
+            triggers[0].fillAmount += waterLevelModifier * Time.deltaTime;
+            triggers[1].fillAmount += waterLevelModifier * Time.deltaTime;
+            isLargeFilled = true;
+        }
+        else if (smallFractures.fillAmount >= 1)
         {
             largeFractures.fillAmount += waterLevelModifier * Time.deltaTime;
         }
@@ -31,18 +40,24 @@ public class WaterPipe : MonoBehaviour
     {
         if (magnitude.value >= 0.9)
         {
-            ballParticles[3].SetActive(true);
+            ballParticles[5].SetActive(true);
+            ballParticles[6].SetActive(true);
         }
         else if(magnitude.value >= 0.7)
         {
-            ballParticles[2].SetActive(true);
-            ballParticles[3].SetActive(false);
+            ballParticles[3].SetActive(true);
+            ballParticles[4].SetActive(true);
+            ballParticles[5].SetActive(false);
+            ballParticles[6].SetActive(false);
         }
         else if(magnitude.value >= 0.5)
         {
             ballParticles[1].SetActive(true);
-            ballParticles[2].SetActive(false);
+            ballParticles[2].SetActive(true);
             ballParticles[3].SetActive(false);
+            ballParticles[4].SetActive(false);
+            ballParticles[5].SetActive(false);
+            ballParticles[6].SetActive(false);
         }
         else if (magnitude.value >= 0.2)
         {
@@ -50,6 +65,9 @@ public class WaterPipe : MonoBehaviour
             ballParticles[1].SetActive(false);
             ballParticles[2].SetActive(false);
             ballParticles[3].SetActive(false);
+            ballParticles[4].SetActive(false);
+            ballParticles[5].SetActive(false);
+            ballParticles[6].SetActive(false);
         }
     }
 
@@ -60,6 +78,10 @@ public class WaterPipe : MonoBehaviour
         {
             AddWater();
             ShowBalls();
+            if(isLargeFilled == true)
+            {
+                inject.SetActive(true);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GasLevel : MonoBehaviour
 {
     public float gasLevelModifier = 0;
+    public Image colouredTrigger;
     private Slider gasSlider;
     private float increaseLevel = 0.07f;
     private float decreaseLevel = 0.1f;
@@ -15,7 +16,10 @@ public class GasLevel : MonoBehaviour
 
     void DropGasLevel()
     {
-        gasSlider.value -= decreaseLevel * Time.deltaTime;
+        if(colouredTrigger.fillAmount >= 1)
+        {
+            gasSlider.value -= decreaseLevel * Time.deltaTime;
+        }
     }
 
     public void AddGasLevel()

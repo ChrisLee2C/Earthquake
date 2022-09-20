@@ -1,15 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private HTTPPost hTTPPost;
+    private Slider magnitude;
     private void Awake()
     {
         instance = this;
         hTTPPost = FindObjectOfType<HTTPPost>();
+        magnitude = magnitudeLevelScript.GetComponent<Slider>();
     }
 
     public float remainingTime = 30f;
@@ -24,7 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GasLevel gasLevelScript;
     [SerializeField] private EndImage endImageScript;
     [SerializeField] private PointerRotate pointerRotateScript;
-    [SerializeField] private WaterPipe waterPipeScript;
+    public Image colouredTrigger;
+    //[SerializeField] private WaterPipe waterPipeScript;
 
     private EndGameState endGameState;
 
@@ -33,7 +37,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameStart == false) { return; } else { CountDown(); }
+        if (isGameStart == false)
+        {
+            return;
+        }
+        else
+        {
+            if(colouredTrigger.fillAmount >= 1)
+            {
+                CountDown();
+            }
+        }
     }
 
     public void ChangeWaterLevel(WaterLevelState newWaterLevelState)
@@ -46,28 +60,28 @@ public class GameManager : MonoBehaviour
                 magnitudeLevelScript.levelModifier = 0;
                 gasLevelScript.gasLevelModifier = 0;
                 pointerRotateScript.SetRotationToTextObject(0);
-                waterPipeScript.waterLevelModifier = 0f;
+                //waterPipeScript.waterLevelModifier = 0f;
                 break;
             case WaterLevelState.Low:
                 waterLevelScript.levelModifier = 2f;
                 magnitudeLevelScript.levelModifier = 2f;
                 gasLevelScript.gasLevelModifier = 2f;
                 pointerRotateScript.SetRotationToTextObject(1);
-                waterPipeScript.waterLevelModifier = 0.2f;
+                //waterPipeScript.waterLevelModifier = 0.5f;
                 break;
             case WaterLevelState.Medium:
                 waterLevelScript.levelModifier = 4f;
                 magnitudeLevelScript.levelModifier = 4f;
                 gasLevelScript.gasLevelModifier = 4f;
                 pointerRotateScript.SetRotationToTextObject(2);
-                waterPipeScript.waterLevelModifier = 0.25f;
+                //waterPipeScript.waterLevelModifier = 0.8f;
                 break;
             case WaterLevelState.High:
                 waterLevelScript.levelModifier = 8f;
                 magnitudeLevelScript.levelModifier = 8f;
                 gasLevelScript.gasLevelModifier = 8f;
                 pointerRotateScript.SetRotationToTextObject(3);
-                waterPipeScript.waterLevelModifier = 0.3f;
+                //waterPipeScript.waterLevelModifier = 1f;
                 break;
         }
     }
@@ -102,7 +116,14 @@ public class GameManager : MonoBehaviour
         {
             remainingTime = 0f;
             isGameStart = false;
-            ChangeGameState(EndGameState.Success);
+            if (magnitude.value < 0.85)
+            {
+                ChangeGameState(EndGameState.Success);
+            }
+            else
+            {
+                ChangeGameState(EndGameState.Earthquake);
+            }
         }
     }
 
