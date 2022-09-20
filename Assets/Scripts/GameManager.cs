@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GasLevel gasLevelScript;
     [SerializeField] private EndImage endImageScript;
     [SerializeField] private PointerRotate pointerRotateScript;
+    [SerializeField] private WaterPipe waterPipeScript;
 
     private EndGameState endGameState;
 
@@ -45,24 +46,28 @@ public class GameManager : MonoBehaviour
                 magnitudeLevelScript.levelModifier = 0;
                 gasLevelScript.gasLevelModifier = 0;
                 pointerRotateScript.SetRotationToTextObject(0);
+                waterPipeScript.waterLevelModifier = 0f;
                 break;
             case WaterLevelState.Low:
                 waterLevelScript.levelModifier = 2f;
                 magnitudeLevelScript.levelModifier = 2f;
                 gasLevelScript.gasLevelModifier = 2f;
                 pointerRotateScript.SetRotationToTextObject(1);
+                waterPipeScript.waterLevelModifier = 0.2f;
                 break;
             case WaterLevelState.Medium:
                 waterLevelScript.levelModifier = 4f;
                 magnitudeLevelScript.levelModifier = 4f;
                 gasLevelScript.gasLevelModifier = 4f;
                 pointerRotateScript.SetRotationToTextObject(2);
+                waterPipeScript.waterLevelModifier = 0.25f;
                 break;
             case WaterLevelState.High:
                 waterLevelScript.levelModifier = 8f;
                 magnitudeLevelScript.levelModifier = 8f;
                 gasLevelScript.gasLevelModifier = 8f;
                 pointerRotateScript.SetRotationToTextObject(3);
+                waterPipeScript.waterLevelModifier = 0.3f;
                 break;
         }
     }

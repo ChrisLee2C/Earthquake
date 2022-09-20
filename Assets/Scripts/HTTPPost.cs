@@ -16,7 +16,7 @@ public class HTTPPost : MonoBehaviour
         email = paramenters[0];
         token = paramenters[1];
 
-        data = $"[{{\"email\":\"{email}\",\"token\":\"{token}\",\"apps_id\":\"app09\",\"score\":1}}]";
+        data = string.Format("[{{\"email\":\"{0}\",\"token\":\"{1}\",\"apps_id\":\"app10\",\"score\":1}}]", email, token);
     }
 
     IEnumerator postRequest(string url)

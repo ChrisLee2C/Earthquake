@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb03fe047c6f674ca553651d3204de7, type: 3}
   m_Name: Success
   m_EditorClassIdentifier: 
-  endGameImage: {fileID: 21300000, guid: 394619f11464f43a6847ff455b6ba314, type: 3}
+  endGameImage: {fileID: 21300000, guid: 49f25b709851b774994114163d277548, type: 3}
   endGameText1: "\u606D\u559C\uFF01\u4F60\u5728\u6642\u9650\u5167\u6C92\u6709\u89F8\u767C\u5927\u5730\u9707\u4E26\u7DAD\u6301\u5DE5\u5EE0\u904B\u4F5C\uFF01"
   endGameText2: Congratulations! The factory operates without triggering large earthquakes
     during the time limit!
