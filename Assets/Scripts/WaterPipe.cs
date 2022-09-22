@@ -10,9 +10,7 @@ public class WaterPipe : MonoBehaviour
     public Image smallFractures;
     public Image largeFractures;
     public Slider magnitude;
-    public GameObject inject;
-    private float waterLevelModifier = 1f;
-    private bool isLargeFilled = false;
+    public float waterLevelModifier = 0f;
 
     private void AddWater()
     {
@@ -20,7 +18,6 @@ public class WaterPipe : MonoBehaviour
         {
             triggers[0].fillAmount += waterLevelModifier * Time.deltaTime;
             triggers[1].fillAmount += waterLevelModifier * Time.deltaTime;
-            isLargeFilled = true;
         }
         else if (smallFractures.fillAmount >= 1)
         {
@@ -78,10 +75,6 @@ public class WaterPipe : MonoBehaviour
         {
             AddWater();
             ShowBalls();
-            if(isLargeFilled == true)
-            {
-                inject.SetActive(true);
-            }
         }
     }
 }

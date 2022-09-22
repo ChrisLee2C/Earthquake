@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class Level : MonoBehaviour
 {
     public float levelModifier = 0;
+    public Image largeFracture;
     private Slider slider;
-    private float increaseLevel = 0.07f;
-    private float decreaseLevel = 0.1f;
+    private float increaseLevel = 0.015f;
 
     // Start is called before the first frame update
     void Awake()
@@ -16,11 +16,6 @@ public class Level : MonoBehaviour
         {
             GameManager.instance.ChangeWaterLevel(GameManager.WaterLevelState.Off);
         }
-    }
-
-    void DropLevel()
-    {
-        slider.value -= decreaseLevel * Time.deltaTime;
     }
 
     public void AddLevel()
@@ -33,8 +28,10 @@ public class Level : MonoBehaviour
     {
         if (GameManager.instance.isGameStart == true)
         {
-            AddLevel();
-            DropLevel();
+            if (largeFracture.fillAmount >= 1)
+            {
+                AddLevel();
+            }
         }
         if (slider.value > 1)
         {

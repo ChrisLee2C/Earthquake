@@ -4,33 +4,24 @@ using UnityEngine.UI;
 public class GasLevel : MonoBehaviour
 {
     public float gasLevelModifier = 0;
-    public Image colouredTrigger;
+    public Image largeFracture;
     private Slider gasSlider;
-    private float increaseLevel = 0.07f;
-    private float decreaseLevel = 0.1f;
+    private float increaseLevel = 0.02f;
+    private float decreaseLevel = 0.05f;
 
-    private void Awake()
-    {
-        gasSlider = GetComponent<Slider>();
-    }
+    private void Awake() { gasSlider = GetComponent<Slider>(); }
 
-    void DropGasLevel()
-    {
-        if(colouredTrigger.fillAmount >= 1)
-        {
-            gasSlider.value -= decreaseLevel * Time.deltaTime;
-        }
-    }
+    void DropGasLevel() { gasSlider.value -= decreaseLevel * Time.deltaTime; }
 
-    public void AddGasLevel()
-    {
-        gasSlider.value += increaseLevel * Time.deltaTime * gasLevelModifier;
-    }
+    public void AddGasLevel() { gasSlider.value += increaseLevel * Time.deltaTime * gasLevelModifier; }
 
     private void Update()
     {
         if (GameManager.instance.isGameStart == true){
-            AddGasLevel();
+            if(largeFracture.fillAmount >= 1)
+            {
+                AddGasLevel();
+            }
             DropGasLevel();
         }
         if (gasSlider.value <= 0)

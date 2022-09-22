@@ -27,8 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GasLevel gasLevelScript;
     [SerializeField] private EndImage endImageScript;
     [SerializeField] private PointerRotate pointerRotateScript;
-    public Image colouredTrigger;
-    //[SerializeField] private WaterPipe waterPipeScript;
+    [SerializeField] private WaterPipe waterPipeScript;
 
     private EndGameState endGameState;
 
@@ -43,10 +42,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if(colouredTrigger.fillAmount >= 1)
-            {
-                CountDown();
-            }
+            CountDown();
         }
     }
 
@@ -60,28 +56,28 @@ public class GameManager : MonoBehaviour
                 magnitudeLevelScript.levelModifier = 0;
                 gasLevelScript.gasLevelModifier = 0;
                 pointerRotateScript.SetRotationToTextObject(0);
-                //waterPipeScript.waterLevelModifier = 0f;
+                waterPipeScript.waterLevelModifier = 0f;
                 break;
             case WaterLevelState.Low:
-                waterLevelScript.levelModifier = 2f;
-                magnitudeLevelScript.levelModifier = 2f;
-                gasLevelScript.gasLevelModifier = 2f;
+                waterLevelScript.levelModifier = 1f;
+                magnitudeLevelScript.levelModifier = 1f;
+                gasLevelScript.gasLevelModifier = 1f;
                 pointerRotateScript.SetRotationToTextObject(1);
-                //waterPipeScript.waterLevelModifier = 0.5f;
+                waterPipeScript.waterLevelModifier = 0.3f;
                 break;
             case WaterLevelState.Medium:
                 waterLevelScript.levelModifier = 4f;
                 magnitudeLevelScript.levelModifier = 4f;
-                gasLevelScript.gasLevelModifier = 4f;
+                gasLevelScript.gasLevelModifier = 10f;
                 pointerRotateScript.SetRotationToTextObject(2);
-                //waterPipeScript.waterLevelModifier = 0.8f;
+                waterPipeScript.waterLevelModifier = 0.5f;
                 break;
             case WaterLevelState.High:
                 waterLevelScript.levelModifier = 8f;
                 magnitudeLevelScript.levelModifier = 8f;
-                gasLevelScript.gasLevelModifier = 8f;
+                gasLevelScript.gasLevelModifier = 12f;
                 pointerRotateScript.SetRotationToTextObject(3);
-                //waterPipeScript.waterLevelModifier = 1f;
+                waterPipeScript.waterLevelModifier = 0.7f;
                 break;
         }
     }
